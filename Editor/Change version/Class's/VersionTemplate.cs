@@ -1,7 +1,5 @@
 using System.Collections.Generic;
 
-using System.Collections.Generic;
-
 namespace Cobilas.Unity.Editor.ChangeVersion {
     public sealed class VersionTemplate : BaseVersionTemplate {
         public override KeyValuePair<string, VersionChangeItem>[] GetTemplates()
