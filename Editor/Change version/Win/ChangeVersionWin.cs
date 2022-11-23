@@ -97,7 +97,7 @@ namespace Cobilas.Unity.Editor.ChangeVersion {
                     ArrayManipulation.Add(item2.Value, ref templatesValue);
                 }
 
-            LoadOldChangeVersion();
+            if (LoadOldChangeVersion()) return;
 
             if (!File.Exists(ChangeVersionConfigFile)) {
                 versionChange = new VersionChangeItem(new VersionModule[0]);
@@ -188,14 +188,16 @@ namespace Cobilas.Unity.Editor.ChangeVersion {
         private bool ToolbarButton(string text)
             => ToolbarButton(EditorGUIUtility.TrTempContent(text));
 
-        private void LoadOldChangeVersion() {
+        private bool LoadOldChangeVersion() {
             if (File.Exists(oldChangeConfigFile))
                 File.Delete(oldChangeConfigFile);
 
             if (File.Exists(oldChangeVersionConfigFile)) {
                 versionChange = ParseOldChangeVersion.Parse(oldChangeVersionConfigFile);
                 File.Delete(oldChangeVersionConfigFile);
+                return true;
             }
+            return false;
         }
 
         private static string VersionToString()
