@@ -179,14 +179,16 @@ namespace Cobilas.Unity.Editor.ChangeVersion {
         private bool ToolbarButton(GUIContent content, float width)
             => GUILayout.Button(content, EditorStyles.toolbarButton, GUILayout.Width(width));
 
-        private bool ToolbarButton(string text, float width)
-            => ToolbarButton(EditorGUIUtility.TrTempContent(text), width);
+        //Método para usar futuramente
+        //private bool ToolbarButton(string text, float width)
+        //    => ToolbarButton(EditorGUIUtility.TrTempContent(text), width);
 
         private bool ToolbarButton(GUIContent content)
             => ToolbarButton(content, EditorStyles.toolbarButton.CalcSize(content).x);
 
-        private bool ToolbarButton(string text)
-            => ToolbarButton(EditorGUIUtility.TrTempContent(text));
+        //Método para usar futuramente
+        //private bool ToolbarButton(string text)
+        //    => ToolbarButton(EditorGUIUtility.TrTempContent(text));
 
         private bool LoadOldChangeVersion() {
             if (File.Exists(oldChangeConfigFile))

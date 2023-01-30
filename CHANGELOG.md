@@ -1,3 +1,8 @@
+# Changelog
+## [1.0.3] - 30/01/2023
+### Changed
+- Os métodos `bool:ChangeVersionWin.ToolbarButton(string, float)` e `bool:ChangeVersionWin.ToolbarButton(string)` foram comentados por não serem usados.
+
 ## [1.0.2] 23/11/2022
 ### Fix (Informações perdidas)
 A o abrir a janela 'ChangeVersion' os arquivos 'ChangeVersion/VersionConfig.txt e 'ChangeVersion/Config.txt' 
