@@ -2,18 +2,27 @@
   "name": "com.cobilas.unity.changeversion",
   "displayName": "Change version",
   "version": "1.0.3",
-  "description": "Uma ferramenta de automatiza\u00e7\u00e3o para alterar a vers\u00e3o de projeto.",
+  "description": "Uma ferramenta de automatização para alterar a versão de projeto.",
   "unity": "2019.1",
   "unityRelease": "0b5",
   "type": "tool",
-  "author": {
-    "name": "Cobilas CTB"
-  },
+  "author": "Cobilas CTB",
   "repository": {
-    "url": "https://github.com/BelicusBr/com.cobilas.unity.changeversion.git",
+    "url": "git+https://github.com/BelicusBr/com.cobilas.unity.changeversion.git",
     "type": "git"
   },
-  "publishConfig": {
-    "registry": "https://npm.pkg.github.com/@BelicusBr"
-  }
+  "bugs": {
+    "url": "https://github.com/BelicusBr/com.cobilas.unity.changeversion/issues"
+  },
+  "homepage": "https://github.com/BelicusBr/com.cobilas.unity.changeversion#readme",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "unity3d",
+    "C#",
+    "CSharp"
+  ],
+  "license": "MIT"
 }
