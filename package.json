@@ -1,8 +1,8 @@
 {
   "name": "com.cobilas.unity.changeversion",
   "displayName": "Change version",
-  "version": "1.0.3",
-  "description": "Uma ferramenta de automatização para alterar a versão de projeto.",
+  "version": "1.1.1",
+  "description": "Uma ferramenta de automatiza\u00e7\u00e3o para alterar a vers\u00e3o de projeto.",
   "unity": "2019.1",
   "unityRelease": "0b5",
   "type": "tool",

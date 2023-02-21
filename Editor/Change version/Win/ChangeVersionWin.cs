@@ -5,8 +5,8 @@ using UnityEngine;
 using UnityEditor.Build;
 using Cobilas.Collections;
 using Cobilas.Unity.Utility;
-using UnityEditor.Build.Reporting;
 using UnityEditor.Compilation;
+using UnityEditor.Build.Reporting;
 
 namespace Cobilas.Unity.Editor.ChangeVersion {
     public class ChangeVersionWin : EditorWindow {
@@ -158,6 +158,7 @@ namespace Cobilas.Unity.Editor.ChangeVersion {
                         EditorGUILayout.EndHorizontal();
                         if (m_temp[I].foldout) {
                             ++EditorGUI.indentLevel;
+                            m_temp[I].name = EditorGUILayout.TextField(LabelItens.lb_Name, m_temp[I].name);
                             m_temp[I].format = EditorGUILayout.TextField(LabelItens.bt_ChangeFormat, m_temp[I].format);
                             if (iv_format)
                                 EditorGUILayout.HelpBox("Invalid format", MessageType.Error);
@@ -216,10 +217,11 @@ namespace Cobilas.Unity.Editor.ChangeVersion {
 
         private static class LabelItens {
             public static GUIContent bt_Add = new GUIContent("Add");
+            public static GUIContent lb_Name = new GUIContent("Name");
             public static GUIContent bt_Save = new GUIContent("Save");
             public static GUIContent bt_Clear = new GUIContent("Clear");
-            public static GUIContent bt_Remove = new GUIContent("Remove");
             public static GUIContent bt_Index = new GUIContent("Index");
+            public static GUIContent bt_Remove = new GUIContent("Remove");
             public static GUIContent bt_ChangeFormat = new GUIContent("Change format");
             public static GUIContent ckb_updateWhenClose = new GUIContent("Update When Close");
             public static GUIContent ckb_IsBuild = new GUIContent("Check to update with each build");

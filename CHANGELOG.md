@@ -1,4 +1,7 @@
 # Changelog
+## [1.1.1] - 21/02/2023
+### Fixed
+Agora cada item no `ChangeVersion` pode ser renomeado.
 ## [1.0.3] - 30/01/2023
 ### Changed
 - Os métodos `bool:ChangeVersionWin.ToolbarButton(string, float)` e `bool:ChangeVersionWin.ToolbarButton(string)` foram comentados por não serem usados.
