@@ -1,9 +1,9 @@
 {
     "name": "Cobilas.Unity.Editor.ChangeVersion",
     "references": [
-        "Cobilas.Core",
+        "Cobilas.Unity.Editor.Utility",
         "Cobilas.Unity.Utility",
-        "Cobilas.Unity.Editor.Utility"
+        "Cobilas.Core"
     ],
     "includePlatforms": [
         "Editor"
