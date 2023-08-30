@@ -1,4 +1,10 @@
 # Changelog
+## [1.3.0] - 29/08/2023
+## Changed
+- As dependencias do pacote foram aluteradas.
+## [1.2.0-ch1] - 28/08/2023
+### Changed
+- O autor do pacote foi alterado de `Cobilas CTB` para `BélicusBr`.
 ## [1.1.1] - 21/02/2023
 ### Fixed
 Agora cada item no `ChangeVersion` pode ser renomeado.
