@@ -24,11 +24,21 @@ namespace Cobilas.Unity.Test.Editor.ChangeVersion {
         }
 
         private void CompilationPipeline_assemblyCompilationFinished(string arg1, CompilerMessage[] arg2) {
+            if (!Update_Revision) return;
             for (int I = 0; I < ArrayManipulation.ArrayLength(arg2); I++)
                 if (arg2[I].type == CompilerMessageType.Error)
                     return;
             module.Index++;
+            ChangeVersionWin.UpdateChangeVersionFile();
         }
+
+        public override object Clone()
+            => new UpdateRevisionOption() {
+                Update_Revision = this.Update_Revision
+            };
+
+        public override int GetHashCode()
+            => Update_Revision.GetHashCode();
 
         public override void Dispose() {
             module = null;

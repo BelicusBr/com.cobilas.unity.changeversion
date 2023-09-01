@@ -3,7 +3,8 @@
     "references": [
         "Cobilas.Core",
         "Cobilas.Unity.Utility",
-        "Cobilas.Unity.Editor.Utility"
+        "Cobilas.Unity.Editor.Utility",
+        "Unity.EditorCoroutines.Editor"
     ],
     "includePlatforms": [
         "Editor"

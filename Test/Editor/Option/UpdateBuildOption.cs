@@ -23,14 +23,23 @@ namespace Cobilas.Unity.Test.Editor.ChangeVersion {
         public override void SetEvent(VersionModule module)
             => this.module = module;
 
+        public override object Clone()
+            => new UpdateBuildOption() {
+                Update_Build = this.Update_Build
+            };
+
         public override void Dispose() {
             module = null;
             Update_Build = default;
         }
 
+        public override int GetHashCode()
+            => Update_Build.GetHashCode();
+
         void IPostprocessBuildWithReport.OnPostprocessBuild(BuildReport report) {
-            if (report.summary.totalErrors != 0) return;
+            if (report.summary.totalErrors != 0 || !Update_Build) return;
             module.Index++;
+            ChangeVersionWin.UpdateChangeVersionFile();
         }
     }
 }

@@ -6,7 +6,7 @@ using Cobilas.Collections;
 
 namespace Cobilas.Unity.Test.Editor.ChangeVersion {
     [Serializable]
-    public class VersionModule : IDisposable {
+    public sealed class VersionModule : IDisposable, ICloneable {
         public string Name;
         public long Index;
         public string Change_Format;
@@ -67,6 +67,28 @@ namespace Cobilas.Unity.Test.Editor.ChangeVersion {
             EditorGUILayout.EndVertical();
         }
 
+        public override int GetHashCode() {
+            int res = (string.IsNullOrEmpty(Name) ? 0 : Name.GetHashCode()) >>
+            (string.IsNullOrEmpty(Change_Format) ? 0 : Change_Format.GetHashCode()) ^
+            Index.GetHashCode();
+            for (int I = 0, C = 0; I < ArrayManipulation.ArrayLength(Options); I++) {
+                switch (C) {
+                    case 0:
+                        res <<= Options[I].GetHashCode();
+                        break;
+                    case 2:
+                        res ^= Options[I].GetHashCode();
+                        break;
+                    case 3:
+                        res >>= Options[I].GetHashCode();
+                        break;
+                }
+                ++C;
+                C = C == 3 ? 0 : C;
+            }
+            return res;
+        }
+
         public void InitEvents() {
             for (int I = 0; I < ArrayManipulation.ArrayLength(Options); I++)
                 Options[I].SetEvent(this);
@@ -84,6 +106,16 @@ namespace Cobilas.Unity.Test.Editor.ChangeVersion {
                 Options[I].Dispose();
 
             ArrayManipulation.ClearArraySafe(ref Options);
+        }
+
+        public object Clone() {
+            string c_Name = string.IsNullOrEmpty(Name) ? string.Empty : (string)Name.Clone();
+            long c_Index = Index;
+            string c_Change_Format = string.IsNullOrEmpty(Change_Format) ? string.Empty : (string)Change_Format.Clone();
+            VersionOptionBase[] c_Options = new VersionOptionBase[ArrayManipulation.ArrayLength(Options)];
+            for (int I = 0; I < Options.Length; I++)
+                c_Options[I] = (VersionOptionBase)Options[I].Clone();
+            return new VersionModule(c_Name, c_Index, c_Change_Format, c_Options);
         }
 
         public override string ToString() {

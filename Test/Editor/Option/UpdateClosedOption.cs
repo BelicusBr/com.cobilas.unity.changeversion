@@ -22,8 +22,17 @@ namespace Cobilas.Unity.Test.Editor.ChangeVersion {
         }
 
         private void EditorApplication_quitting() {
+            if (!Update_Closed) return;
             module.Index++;
         }
+
+        public override object Clone()
+            => new UpdateClosedOption() {
+                Update_Closed = this.Update_Closed
+            };
+
+        public override int GetHashCode()
+            => Update_Closed.GetHashCode();
 
         public override void Dispose() {
             module = null;

@@ -4,7 +4,7 @@ using System.Text;
 using Cobilas.Collections;
 
 namespace Cobilas.Unity.Test.Editor.ChangeVersion {
-    /// <summary>{Major}.{Minor}.{Build}.{Revision}</summary>
+    /// <summary>{Major}.{Minor}.{Revision}</summary>
     [Serializable]
     public sealed class MMR_Template : VersionTemplateTarget {
         [SerializeField] private string name;
@@ -14,9 +14,16 @@ namespace Cobilas.Unity.Test.Editor.ChangeVersion {
         public override VersionModule[] Modules => modules;
         public override int ModuleCount => ArrayManipulation.ArrayLength(modules);
 
-        public MMR_Template() {
-            name = "MMR";
-            modules = new VersionModule[] {
+        public override VersionModule this[int index] => modules[index];
+
+        public MMR_Template(string name, VersionModule[] modules) {
+            this.name = name;
+            this.modules = modules;
+        }
+
+        public MMR_Template() : this (
+            "MMR",
+            new VersionModule[] {
                 new VersionModule("Major", "{0}.",
                     new UpdateClosedOption(),
                     new UpdateBuildOption(),
@@ -31,7 +38,32 @@ namespace Cobilas.Unity.Test.Editor.ChangeVersion {
                     new UpdateRevisionOption(),
                     new PreProductionCharacterOption("-{0}")
                 )
-            };
+            }
+        ) { }
+
+        public override void Set(string name, VersionModule[] modules) {
+            this.name = name;
+            this.modules = modules;
+        }
+
+        public override int GetHashCode() {
+            int res = string.IsNullOrEmpty(Name) ? 0 : Name.GetHashCode();
+            for (int I = 0, C = 0; I < ModuleCount; I++) {
+                switch (C) {
+                    case 0:
+                        res >>= modules[I].GetHashCode();
+                        break;
+                    case 2:
+                        res ^= modules[I].GetHashCode();
+                        break;
+                    case 3:
+                        res <<= modules[I].GetHashCode();
+                        break;
+                }
+                ++C;
+                C = C == 3 ? 0 : C;
+            }
+            return res;
         }
 
         public override string ToString() {

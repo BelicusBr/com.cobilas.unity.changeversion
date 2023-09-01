@@ -60,14 +60,25 @@ namespace Cobilas.Unity.Test.Editor.ChangeVersion {
         }
 
         private void Module_Pos_Print(StringBuilder obj) {
+            if (Index == 0) return;
             string text = (isSingleChar ? SCharPreProduc : CharPreProduc)[Index];
-            text = Index == 0 ? string.Empty : text;
             try {
                 obj.AppendFormat(format, text);
             } catch {
                 obj.Append(text);
             }
         }
+
+        public override int GetHashCode()
+            => Index.GetHashCode() >> (string.IsNullOrEmpty(format) ? 0 : format.GetHashCode()) ^
+            isSingleChar.GetHashCode();
+
+        public override object Clone()
+            => new PreProductionCharacterOption() {
+                Index = this.Index,
+                format = string.IsNullOrEmpty(format) ? string.Empty : (string)this.format.Clone(),
+                isSingleChar = this.isSingleChar
+            };
 
         public override void Dispose() {
             Index = 0;
