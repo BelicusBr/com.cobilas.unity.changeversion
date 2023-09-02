@@ -3,8 +3,9 @@ using UnityEngine;
 using UnityEditor;
 using System.Text;
 using Cobilas.Collections;
+using Cobilas.Unity.Editor.ChangeVersion.Option;
 
-namespace Cobilas.Unity.Test.Editor.ChangeVersion {
+namespace Cobilas.Unity.Editor.ChangeVersion {
     [Serializable]
     public sealed class VersionModule : IDisposable, ICloneable {
         public string Name;
@@ -52,11 +53,22 @@ namespace Cobilas.Unity.Test.Editor.ChangeVersion {
             foldout = EditorGUILayout.Foldout(foldout, string.Format("Name:{0} [{1}]", Name, txt_format));
             ++EditorGUI.indentLevel;
             if (foldout) {
+                EditorGUI.BeginChangeCheck();
                 Name = EditorGUILayout.TextField("Name", Name);
+                if (EditorGUI.EndChangeCheck())
+                    ChangeName?.Invoke();
+
+                EditorGUI.BeginChangeCheck();
                 Change_Format = EditorGUILayout.TextField("Format", Change_Format);
+                if (EditorGUI.EndChangeCheck())
+                    ChangeModuleFormat?.Invoke();
                 if (!valid_format)
                     EditorGUILayout.HelpBox("Invalid format", MessageType.Error);
+
+                EditorGUI.BeginChangeCheck();
                 Index = EditorGUILayout.LongField("Index", Index);
+                if (EditorGUI.EndChangeCheck())
+                    ChangeIndex?.Invoke();
                 EditorGUILayout.LabelField("Options", EditorStyles.boldLabel);
                 ++EditorGUI.indentLevel;
                 for (int I = 0; I < ArrayManipulation.ArrayLength(Options); I++)

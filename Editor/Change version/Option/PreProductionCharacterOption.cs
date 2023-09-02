@@ -3,7 +3,7 @@ using System.Text;
 using UnityEngine;
 using UnityEditor;
 
-namespace Cobilas.Unity.Test.Editor.ChangeVersion {
+namespace Cobilas.Unity.Editor.ChangeVersion.Option {
     [Serializable]
     public sealed class PreProductionCharacterOption : VersionOptionBase {
 

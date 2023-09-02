@@ -4,7 +4,7 @@ using UnityEditor;
 using Cobilas.Collections;
 using UnityEditor.Compilation;
 
-namespace Cobilas.Unity.Test.Editor.ChangeVersion {
+namespace Cobilas.Unity.Editor.ChangeVersion.Option {
     /// <summary>Mark revision after completion of compilation.</summary>
     [Serializable]
     public sealed class UpdateRevisionOption : VersionOptionBase {

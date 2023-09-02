@@ -2,8 +2,9 @@
 using UnityEngine;
 using System.Text;
 using Cobilas.Collections;
+using Cobilas.Unity.Editor.ChangeVersion.Option;
 
-namespace Cobilas.Unity.Test.Editor.ChangeVersion {
+namespace Cobilas.Unity.Editor.ChangeVersion.Template {
     /// <summary>{Major}.{Minor}.{Build}</summary>
     [Serializable]
     public sealed class MMB_Template : VersionTemplateTarget {
@@ -64,6 +65,21 @@ namespace Cobilas.Unity.Test.Editor.ChangeVersion {
                 C = C == 3 ? 0 : C;
             }
             return res;
+        }
+
+        public override object Clone() {
+            string c_name = string.IsNullOrEmpty(name) ? string.Empty : (string)name.Clone();
+            VersionModule[] c_modules = new VersionModule[ModuleCount];
+            for (int I = 0; I < ModuleCount; I++)
+                c_modules[I] = (VersionModule)modules[I].Clone();
+            return new MMB_Template(c_name, c_modules);
+        }
+
+        public override void Dispose() {
+            name = string.Empty;
+            for (int I = 0; I < ModuleCount; I++)
+                modules[I].Dispose();
+            ArrayManipulation.ClearArraySafe(ref modules);
         }
 
         public override string ToString() {

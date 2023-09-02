@@ -2,8 +2,9 @@
 using UnityEngine;
 using Cobilas.Collections;
 using Cobilas.Unity.Utility;
+using Cobilas.Unity.Editor.ChangeVersion.Template;
 
-namespace Cobilas.Unity.Test.Editor.ChangeVersion {
+namespace Cobilas.Unity.Editor.ChangeVersion.Serialization {
     [Serializable]
     public sealed class VersionSerialize : IDisposable {
         [SerializeField] private string typename;
