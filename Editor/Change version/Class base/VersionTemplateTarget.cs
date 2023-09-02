@@ -3,20 +3,16 @@ using Cobilas.Collections;
 using Cobilas.Unity.Utility;
 using System.Collections.Generic;
 
-namespace Cobilas.Unity.Test.Editor.ChangeVersion {
+namespace Cobilas.Unity.Editor.ChangeVersion.Template {
     [Serializable]
-    public abstract class VersionTemplateTarget {
+    public abstract class VersionTemplateTarget : IDisposable, ICloneable {
         public abstract string Name { get; }
         public abstract int ModuleCount { get; }
         public abstract VersionModule[] Modules { get; }
         public abstract VersionModule this[int index] { get; }
 
-        ~VersionTemplateTarget() {
-            UnityEngine.Debug.Log("Destroy");
-            ChangeVersionResource.UnloadChangeVersionFile(this);
-        }
-
-        public new abstract int GetHashCode();
+        public abstract object Clone();
+        public abstract void Dispose();
         public abstract void Set(string name, VersionModule[] modules);
 
         public static IEnumerable<VersionTemplateTarget> GetTemplates() {

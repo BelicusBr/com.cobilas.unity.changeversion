@@ -4,7 +4,7 @@ using UnityEditor;
 using UnityEditor.Build;
 using UnityEditor.Build.Reporting;
 
-namespace Cobilas.Unity.Test.Editor.ChangeVersion {
+namespace Cobilas.Unity.Editor.ChangeVersion.Option {
     /// <summary>Check to update with each build.</summary>
     [Serializable]
     public sealed class UpdateBuildOption : VersionOptionBase, IPostprocessBuildWithReport {

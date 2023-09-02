@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Cobilas.Unity.Test.Editor.ChangeVersion {
+namespace Cobilas.Unity.Editor.ChangeVersion.Option {
     [Serializable]
     public abstract class VersionOptionBase : IDisposable, ICloneable {
         public abstract void Dispose();

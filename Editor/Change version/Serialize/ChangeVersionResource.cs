@@ -2,14 +2,17 @@
 using UnityEditor;
 using UnityEngine;
 using System.Text;
+using System.Diagnostics;
 using Cobilas.Unity.Utility;
-using System.Collections.Generic;
+using Cobilas.Unity.Editor.ChangeVersion.Template;
 
-namespace Cobilas.Unity.Test.Editor.ChangeVersion {
+using UEDebug = UnityEngine.Debug;
+
+namespace Cobilas.Unity.Editor.ChangeVersion.Serialization {
     public static class ChangeVersionResource {
         public static string ChangeVersionFolder => UnityPath.Combine(UnityPath.ProjectFolderPath, "ChangeVersion");
         public static string ChangeVersionFile => UnityPath.Combine(ChangeVersionFolder, "ChangeVersion.json");
-        public static string FolderTemp => UnityPath.Combine(ChangeVersionFolder, "Temp");
+        //public static string FolderTemp => UnityPath.Combine(ChangeVersionFolder, "Temp");
 
         public static void UnloadChangeVersionFile(VersionTemplateTarget target) {
             if (!Directory.Exists(ChangeVersionFolder))
@@ -21,7 +24,7 @@ namespace Cobilas.Unity.Test.Editor.ChangeVersion {
                 }
             }
         }
-
+        //EditorGUIUtility.systemCopyBuffer
         public static VersionTemplateTarget LoadChangeVersionFile() {
             if (!File.Exists(ChangeVersionFile)) return null;
             using (FileStream file = File.Open(ChangeVersionFile, FileMode.Open, FileAccess.Read, FileShare.Read)) {
@@ -29,5 +32,21 @@ namespace Cobilas.Unity.Test.Editor.ChangeVersion {
                     return serialize.GetTemplate();
             }
         }
+
+        [MenuItem("Tools/ChangeVersion/Print version")]
+        public static void PrintVersion() {
+            using (VersionTemplateTarget target = LoadChangeVersionFile())
+                UEDebug.Log(target);
+        }
+
+        [MenuItem("Tools/ChangeVersion/Copy version print")]
+        private static void CopyVersionPrint() {
+            using (VersionTemplateTarget target = LoadChangeVersionFile())
+                EditorGUIUtility.systemCopyBuffer = target.ToString();
+        }
+
+        [MenuItem("Tools/ChangeVersion/Open ChangeVersion folder")]
+        private static void OpenChangeVersionFolder()
+            => Process.Start(ChangeVersionFolder).Dispose();
     }
 }
