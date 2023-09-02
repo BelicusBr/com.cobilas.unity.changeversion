@@ -2,7 +2,7 @@
 O formato é baseado em [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 e este projeto segue o [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [2.0.0] - 01/09/2023
+## [2.0.0-rc1] - 01/09/2023
 ### Obsoleto
 - O arquivo <kbd>VersionConfig.json</kbd> não e mas utilizado pelo <kbd>ChangeVersion</kbd>, mas o arquivo não será apagado.
 ### Added
