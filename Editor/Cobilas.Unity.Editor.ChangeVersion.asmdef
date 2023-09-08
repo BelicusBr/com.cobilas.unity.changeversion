@@ -2,8 +2,7 @@
     "name": "Cobilas.Unity.Editor.ChangeVersion",
     "references": [
         "Cobilas.Unity.Editor.Utility",
-        "Cobilas.Unity.Utility",
-        "Cobilas.Core"
+        "Cobilas.Unity.Utility"
     ],
     "includePlatforms": [
         "Editor"
