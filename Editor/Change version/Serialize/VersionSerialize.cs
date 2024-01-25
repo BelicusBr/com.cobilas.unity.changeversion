@@ -1,7 +1,6 @@
 ﻿using System;
 using UnityEngine;
 using Cobilas.Collections;
-using Cobilas.Unity.Utility;
 using Cobilas.Unity.Editor.ChangeVersion.Template;
 
 namespace Cobilas.Unity.Editor.ChangeVersion.Serialization {
@@ -21,7 +20,13 @@ namespace Cobilas.Unity.Editor.ChangeVersion.Serialization {
         }
 
         public VersionTemplateTarget GetTemplate() {
-            Type type = UnityTypeUtility.GetType(typename);
+            Type type = null;
+            foreach (var item in TypeUtilitarian.GetTypes())
+                if (item.FullName == typename) {
+                    type = item;
+                    break;
+                }
+            
             VersionTemplateTarget temp = (VersionTemplateTarget)Activator.CreateInstance(type);
             VersionModule[] c_modules = new VersionModule[ArrayManipulation.ArrayLength(modules)];
             for (int I = 0; I < c_modules.Length; I++)

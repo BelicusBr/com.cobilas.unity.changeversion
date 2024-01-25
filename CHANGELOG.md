@@ -1,15 +1,15 @@
 # Changelog
-O formato é baseado em [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
-e este projeto segue o [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
+The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
+and this project follows [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 ## [2.0.0] - 08/09/2023
 ### Changed
-- As dependencias foram alteradas.
+- Dependencies have been changed.
 ## [2.0.0-rc1] - 01/09/2023
-### Obsoleto
-- O arquivo <kbd>VersionConfig.json</kbd> não e mas utilizado pelo <kbd>ChangeVersion</kbd>, mas o arquivo não será apagado.
+### Obsolete
+- The file <kbd>VersionConfig.json</kbd> is not used by <kbd>ChangeVersion</kbd>, but the file will not be deleted.
 ### Added
-- A nova função `Tools/ChangeVersion/Open ChangeVersion folder` foi adicionada.
-- As opções customizadas foram adicionadas como
+- New function `Tools/ChangeVersion/Open ChangeVersion folder` has been added.
+- Custom options have been added as
 ```c#
 sealed class PreProductionCharacterOption;
 sealed class UpdateBuildOption;
@@ -17,34 +17,34 @@ sealed class UpdateClosedOption;
 sealed class UpdateRevisionOption;
 ```
 ### Removed
-- As classes 
+- The classes
 ```c#
 class BaseBuildPhaseTemplate;
 class BaseVersionTemplate;
 static class ParseOldChangeVersion
 ```
-foram removidas.
+have been removed.
 ## [1.3.0] - 29/08/2023
 ## Changed
-- As dependencias do pacote foram aluteradas.
+- Package dependencies have been changed.
 ## [1.2.0-ch1] - 28/08/2023
 ### Changed
-- O autor do pacote foi alterado de `Cobilas CTB` para `BélicusBr`.
+- The package author was changed from `Cobilas CTB` to `BélicusBr`.
 ## [1.1.1] - 21/02/2023
-### Fixed
-Agora cada item no `ChangeVersion` pode ser renomeado.
+###Fixed
+Now every item in `ChangeVersion` can be renamed.
 ## [1.0.3] - 30/01/2023
 ### Changed
-- Os métodos `bool:ChangeVersionWin.ToolbarButton(string, float)` e `bool:ChangeVersionWin.ToolbarButton(string)` foram comentados por não serem usados.
+- The methods `bool:ChangeVersionWin.ToolbarButton(string, float)` and `bool:ChangeVersionWin.ToolbarButton(string)` were commented out as they are not used.
 
-## [1.0.2] 23/11/2022
-### Fix (Informações perdidas)
-A o abrir a janela 'ChangeVersion' os arquivos 'ChangeVersion/VersionConfig.txt e 'ChangeVersion/Config.txt' 
-eram apagados mais as informações não eram absorvidos pelo 'ChangeVersion' o que ocasionava num valor vaziu
-padrão.
-### Fix (Biblioteca duplicada)
-A biblioteca duplicada `using System.Collections.Generic;` foi removida de
+## [1.0.2] 23/11/2021
+### Fix (Lost information)
+When opening the 'ChangeVersion' window, the files 'ChangeVersion/VersionConfig.txt and 'ChangeVersion/Config.txt'
+were deleted but the information was not absorbed by 'ChangeVersion' which resulted in an empty value
+standard.
+### Fix (Duplicate library)
+The duplicate library `using System.Collections.Generic;` has been removed from
 'Editor\Change version\Class's\VersionTemplate.cs(Ln:3)'
 ## [1.0.0] 10/11/2022
-### Repositorio com.cobilas.unity.utility iniciado
-- Lançado para o GitHub
+### Repository com.cobilas.unity.utility started
+- Released to GitHub

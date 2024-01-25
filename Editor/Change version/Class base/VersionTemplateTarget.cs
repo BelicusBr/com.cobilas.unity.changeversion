@@ -1,6 +1,5 @@
 ﻿using System;
 using Cobilas.Collections;
-using Cobilas.Unity.Utility;
 using System.Collections.Generic;
 
 namespace Cobilas.Unity.Editor.ChangeVersion.Template {
@@ -16,7 +15,7 @@ namespace Cobilas.Unity.Editor.ChangeVersion.Template {
         public abstract void Set(string name, VersionModule[] modules);
 
         public static IEnumerable<VersionTemplateTarget> GetTemplates() {
-            Type[] types = UnityTypeUtility.GetAllTypes();
+            Type[] types = TypeUtilitarian.GetTypes();
 
             for (int I = 0; I < ArrayManipulation.ArrayLength(types); I++)
                 if (types[I].IsSubclassOf(typeof(VersionTemplateTarget)))

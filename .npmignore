@@ -1,0 +1,8 @@
+.libs/
+bin/
+obj/
+.vscode/
+.github/
+node_modules/
+*sln
+*.csproj
