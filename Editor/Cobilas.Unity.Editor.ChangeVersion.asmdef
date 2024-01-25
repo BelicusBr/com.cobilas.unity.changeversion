@@ -1,6 +1,7 @@
 {
     "name": "Cobilas.Unity.Editor.ChangeVersion",
     "references": [
+        "Cobilas.Core.Net4x",
         "Cobilas.Unity.Utility",
         "Cobilas.Unity.Editor.Utility"
     ],
