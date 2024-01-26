@@ -4,5 +4,6 @@ obj/
 .vscode/
 .github/
 node_modules/
+Test/
 *sln
 *.csproj
