@@ -1,7 +1,7 @@
 {
   "name": "com.cobilas.unity.changeversion",
   "displayName": "Change version",
-  "version": "2.1.0",
+  "version": "2.1.1",
   "description": "An automation tool to change project version.",
   "unity": "2019.1",
   "unityRelease": "0b5",
@@ -17,8 +17,9 @@
   "homepage": "https://github.com/BelicusBr/com.cobilas.unity.changeversion#readme",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "init_pack": "npm pack --pack-destination C:/local.npm"
+    "npm_pack": "npm pack --pack-destination C:/local.npm",
+    "npm_push": "@powershell -Command . cobilas.package.funcs.ps1 ; npm_push -package_name %npm_package_name% -package_version %npm_package_version%",
+	"npm_pack_push": "npm run npm_pack && npm run npm_push"
   },
   "keywords": [
     "unity3d",
@@ -27,6 +28,7 @@
   ],
   "license": "MIT",
   "dependencies": {
-    "com.cobilas.unity.utility": "2.10.1"
+    "com.cobilas.unity.utility": "2.10.3",
+    "com.cobilas.unity.core.net4x": "1.4.1"
   }
 }
