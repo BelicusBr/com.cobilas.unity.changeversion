@@ -1,6 +1,17 @@
 # Changelog
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project follows [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
+## [2.1.2] (11/02/2024)
+- ### Fixed
+- - Fixed an issue in the `UpdateBuildOption` class that prevented it from being called correctly in the project post-build.
+- #### Details
+- - The `UpdateBuildOption` class inherited the `IPostprocessBuildWithReport` interface, which allowed it to be called after the project was built.
+However, the Unity editor was calling and instantiating the `UpdateBuildOption` class instead of using the already instantiated object.
+This caused the class to malfunction.
+- #### Solution
+- - The `IPostprocessBuildWithReport` interface has been removed from the `UpdateBuildOption` class.
+Now, the `UpdateBuildOption` class uses the `OnPostprocessBuild` event of the `CVBuildReport` class, which is correctly called after the project is built.
+
 ## [2.1.1] (05/02/2024)
 - ### Changed
 - - Updated dependency `com.cobilas.unity.utility` to version `2.10.3`.

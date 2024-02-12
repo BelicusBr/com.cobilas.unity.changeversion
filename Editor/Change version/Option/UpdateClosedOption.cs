@@ -24,6 +24,7 @@ namespace Cobilas.Unity.Editor.ChangeVersion.Option {
         private void EditorApplication_quitting() {
             if (!Update_Closed) return;
             module.Index++;
+			//problemas
         }
 
         public override object Clone()
