@@ -1,18 +1,15 @@
 ﻿using System;
 using UnityEngine;
 using UnityEditor;
-using UnityEditor.Build;
 using UnityEditor.Build.Reporting;
 
 namespace Cobilas.Unity.Editor.ChangeVersion.Option {
     /// <summary>Check to update with each build.</summary>
     [Serializable]
-    public sealed class UpdateBuildOption : VersionOptionBase, IPostprocessBuildWithReport {
+    public sealed class UpdateBuildOption : VersionOptionBase {
 
         [SerializeField] private bool Update_Build;
         [NonSerialized] private VersionModule module;
-
-        int IOrderedCallback.callbackOrder => 0;
 
         public override void OptionDraw() {
             Update_Build = EditorGUILayout.ToggleLeft(
@@ -20,8 +17,10 @@ namespace Cobilas.Unity.Editor.ChangeVersion.Option {
                 Update_Build);
         }
 
-        public override void SetEvent(VersionModule module)
-            => this.module = module;
+        public override void SetEvent(VersionModule module) {
+            this.module = module;
+            CVBuildReport.OnPostprocessBuild += OnPostprocessBuild;
+        }
 
         public override object Clone()
             => new UpdateBuildOption() {
@@ -31,12 +30,13 @@ namespace Cobilas.Unity.Editor.ChangeVersion.Option {
         public override void Dispose() {
             module = null;
             Update_Build = default;
+            CVBuildReport.OnPostprocessBuild -= OnPostprocessBuild;
         }
 
         public override int GetHashCode()
             => Update_Build.GetHashCode();
 
-        void IPostprocessBuildWithReport.OnPostprocessBuild(BuildReport report) {
+        private void OnPostprocessBuild(BuildReport report) {
             if (report.summary.totalErrors != 0 || !Update_Build) return;
             module.Index++;
             ChangeVersionWin.UpdateChangeVersionFile();
