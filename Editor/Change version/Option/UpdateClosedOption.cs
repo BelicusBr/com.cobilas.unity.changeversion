@@ -18,13 +18,13 @@ namespace Cobilas.Unity.Editor.ChangeVersion.Option {
 
         public override void SetEvent(VersionModule module) {
             this.module = module;
-            EditorApplication.quitting += EditorApplication_quitting;
+            EditorApplication.wantsToQuit += EditorApplication_quitting;
         }
 
-        private void EditorApplication_quitting() {
-            if (!Update_Closed) return;
+        private bool EditorApplication_quitting() {
+            if (!Update_Closed) return true;
             module.Index++;
-			//problemas
+			return true;
         }
 
         public override object Clone()
@@ -39,7 +39,7 @@ namespace Cobilas.Unity.Editor.ChangeVersion.Option {
             module = null;
             Update_Closed = default;
             try {
-                EditorApplication.quitting -= EditorApplication_quitting;
+                EditorApplication.wantsToQuit -= EditorApplication_quitting;
             } catch { }
         }
     }
